@@ -1,14 +1,21 @@
-export const TodoItem = ({ task }: any) => {
-   return (
+export const TodoItem = ({ id, name, completed, removeItem, completeTask }: any) => {
+
+  const handleRemove = (id:any) => {
+    //console.log('clickeaste la tarea con id:', id);
+    removeItem(id);
+  };
+
+  const handleComplete = (id: any) => {
+    completeTask(id)
+  }
+
+  return (
      <>
-       {
-         task.map((task: any) => {
-           const { id, name, completed } = task;
-           return (
-             <span key={id}>{name}</span>
-           )
-         })
-       }
+        <div className='flex justify-between' key={id}>
+          <input type='checkbox' checked={completed} onChange={() => handleComplete(id)}/>
+          <span className={completed ? 'bg-red-500' : 'bg-green-500'}>{name}</span>
+          <button onClick={() => handleRemove(id)}>X</button>
+        </div>
      </>
    );
 };
