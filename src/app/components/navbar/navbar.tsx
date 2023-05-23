@@ -1,12 +1,15 @@
-
+import Logo from "./logo";
 
 type NavbarProps = {
   calendar: JSX.Element
 }
 
 export const Navbar = () => {
-  return <nav className="top-0 h-10 bg-cyan-500">
-    hola soy Navbar</nav>
+  return (
+    <nav className="relative top-0 h-20 flex items-center bg-cyan-500">
+      <Logo/>
+    </nav>
+  );
 };
 
 export default Navbar;

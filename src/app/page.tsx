@@ -1,47 +1,16 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Footer } from './components/footer/footer';
 import { Navbar } from './components/navbar/navbar';
 import { TodoInput } from './components/todoInput/todoInput';
 import { TodoList } from './components/todoList/TodoList';
-import { TodoItem } from './components/todoItem/todoItem';
-
-const initial = [
-    {
-      id: 1,
-      name: "pasear al perro",
-      completed: false,
-    },
-    {
-      id: 2,
-      name: "Leer un libro",
-      completed: false,
-    },
-    {
-      id: 3,
-      name: "Estudiar React",
-      completed: true,
-    },
-    {
-      id: 4,
-      name: "ir al super",
-      completed: true,
-    },
-    {
-      id: 5,
-      name: "hacer un asado",
-      completed: false
-    },
-    {
-      id: 6,
-      name: "festejar el nuevo puesto con un gran asado",
-      completed: false
-    },
-  ];
+import { initial } from './utils/seed';
 
 export default function Home() {
 
   const [taskList, setTaskList] = useState(initial);
+  const [activeFilter, setActiveFilter] = useState('all');
+  const [filterBy, setFilterBy] = useState(taskList);
 
   const removeItem = (id: any) => {
     const newTaskList = taskList.filter(task => task.id !== id);
@@ -70,10 +39,8 @@ export default function Home() {
     return taskList
   };
 
-  console.log(taskList)
-
   const completeTask = (id: any) => {
-    let taskListCompleted = ([...taskList].map((task) => {
+    let taskListCompleted = taskList.map((task) => {
       if (task.id === id) {
         let taskCompleted = {
           ...task,
@@ -83,16 +50,54 @@ export default function Home() {
       } else {
         return task
       }
-    }))
+    })
     setTaskList(taskListCompleted)
+  };
+
+  const showAll = () => {
+    setActiveFilter('all')
+  };
+
+  const showActive = () => {
+    setActiveFilter('active')
+  }
+
+  const showCompleted = () => {
+    setActiveFilter('completed')
+  }
+
+  const handleClearComplete = () => {
+    const updateListTask = taskList.filter((task: any) => !task.completed)
+    setTaskList(updateListTask)
+  }
+
+  useEffect(() => {
+    if (activeFilter === 'all') {
+      setFilterBy(taskList)
+    } else if (activeFilter === 'active') {
+      const activeTask = taskList.filter((task) => task.completed === false)
+      setFilterBy(activeTask)
+    } else if (activeFilter === 'completed') {
+      const completedTask = taskList.filter((task) => task.completed === true)
+      setFilterBy(completedTask)
     }
+  },[activeFilter, taskList])
 
   return (
     <main className='h-screen w-full flex flex-col'>
       <Navbar />
       <div className='flex flex-col justify-center items-center h-full'>
         <TodoInput addNewItem={addNewItem}/>
-        <TodoList taskList={taskList} removeItem={removeItem} completeTask={completeTask} />
+        <TodoList
+          taskList={filterBy}
+          activeFilter={activeFilter}
+          removeItem={removeItem}
+          completeTask={completeTask}
+          showAll={showAll}
+          showActive={showActive}
+          showCompleted={showCompleted}
+          handleClearComplete={handleClearComplete}
+        />
       </div>
       <Footer />
     </main>
