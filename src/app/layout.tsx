@@ -1,7 +1,17 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import { Lobster, Roboto_Flex } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const lobster = Lobster({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-lobster'
+})
+
+const robotoFlex = Roboto_Flex({
+  weight: '100',
+  subsets: ['latin'],
+  variable: '--font-roboto-flex'
+})
 
 export const metadata = {
   title: 'To Do App',
@@ -15,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${lobster.variable} ${robotoFlex.variable}`}>{children}</body>
     </html>
   )
 }

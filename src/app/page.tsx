@@ -86,7 +86,7 @@ export default function Home() {
   return (
     <main className='h-screen w-full flex flex-col'>
       <Navbar />
-      <div className='flex flex-col justify-center items-center h-full'>
+      <div className='flex flex-col justify-start p-4 items-center h-full'>
         <TodoInput addNewItem={addNewItem}/>
         <TodoList
           taskList={filterBy}
