@@ -1,19 +1,19 @@
 export const TodoItem = ({ id, name, completed, removeItem, completeTask }: any) => {
 
-  const handleRemove = (id:any) => {
+  const handleRemove = (id: number) => {
     //console.log('clickeaste la tarea con id:', id);
     removeItem(id);
   };
 
-  const handleComplete = (id: any) => {
+  const handleComplete = (id: number) => {
     completeTask(id)
   }
 
   return (
     <div className='flex justify-between items-center border-b-2 border-gray-400' key={id}>
       <div className="flex justify-start">
-        <input className="m-2 h-5 w-5" type='checkbox' checked={completed} onChange={() => handleComplete(id)}/>
-        <span className={`my-auto text-base`+(completed ? 'line-through text-gray-500' : '')}>{name}</span>
+        <input className="m-2 h-5 w-5" type='checkbox' checked={completed} onChange={() => handleComplete(id)} />
+        <span className={`my-auto text-base` + (completed ? 'line-through text-gray-500' : '')}>{name}</span>
       </div>
       <button onClick={() => handleRemove(id)} className="m-2 bg-gray-200 p-2 rounded-full border-gray-500 border-solid border-2">
         <svg fill="#000000" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" viewBox="0 0 589.004 589.004" >
@@ -88,7 +88,7 @@ export const TodoItem = ({ id, name, completed, removeItem, completeTask }: any)
         </svg>
       </button>
     </div>
-   );
+  );
 };
 
 export default TodoItem;

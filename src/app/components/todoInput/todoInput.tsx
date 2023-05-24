@@ -7,7 +7,7 @@ export const TodoInput = ({ addNewItem }: any) => {
     setTarea(e.currentTarget.value);
   };
 
-  const handleSubmit = ( e : any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     if (tarea.trim() !== '') {
       addNewItem(tarea);
@@ -25,6 +25,7 @@ export const TodoInput = ({ addNewItem }: any) => {
           className="w-full text-gray-700 input border-none p-4 rounded-lg bg-gray-200 shadow-md transition duration-300 focus:outline-gray-200 focus:bg-gray-200 focus:shadow-inner"
           onChange={handleChange}
           value={tarea}
+          autoFocus
         />
         <button
           type="submit"

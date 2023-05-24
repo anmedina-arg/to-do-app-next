@@ -10,12 +10,12 @@ export const Filter = ({
 }: any) => {
   return (
     <>
-        <ItemsLeft total={total} active={activeFilter} />
+      <ItemsLeft total={total} active={activeFilter} />
       <FilterContainer>
         <FilterButtonContainer>
-          <FilterButton action={() => showAll()} active={activeFilter} filter='todas'/>
-          <FilterButton action={() => showActive()} active={activeFilter} filter='activas'/>
-          <FilterButton action={() => showCompleted()} active={activeFilter} filter='completas'/>
+          <FilterButton action={() => showAll()} active={activeFilter} filter='todas' />
+          <FilterButton action={() => showActive()} active={activeFilter} filter='activas' />
+          <FilterButton action={() => showCompleted()} active={activeFilter} filter='completas' />
         </FilterButtonContainer>
         <button
           onClick={() => handleClearComplete()}

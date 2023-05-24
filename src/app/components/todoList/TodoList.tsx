@@ -1,13 +1,14 @@
 import Filter from '../filters/filters';
 import { TodoItem } from '../todoItem/todoItem';
+import { TaskProp } from '../../utils/type';
 
 export const TodoList = ({ taskList, removeItem, completeTask, showAll, showActive, showCompleted, handleClearComplete, activeFilter }: any) => {
 
   return (
-    <div className="mt-4 w-full min-h-screen rounded flex flex-col lg:max-w-xl">
+    <div className="mt-4 w-full rounded flex flex-col lg:max-w-xl">
       <Filter
         activeFilter={activeFilter}
-        total = {taskList.length}
+        total={taskList.length}
         showAll={showAll}
         showActive={showActive}
         showCompleted={showCompleted}
@@ -15,7 +16,7 @@ export const TodoList = ({ taskList, removeItem, completeTask, showAll, showActi
       />
       <div className='mt-4'>
         {
-          taskList.map((task: any) => {
+          taskList.map((task: TaskProp) => {
             const { id, name, completed } = task;
             return (
               <TodoItem

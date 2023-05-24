@@ -5,12 +5,14 @@ import { Navbar } from './components/navbar/navbar';
 import { TodoInput } from './components/todoInput/todoInput';
 import { TodoList } from './components/todoList/TodoList';
 import { initial } from './utils/seed';
+import { useLocalStorage } from './utils/useLocalStorage';
+import { TaskProp } from './utils/type';
 
-export default function Home() {
+export default function Home(): JSX.Element {
 
-  const [taskList, setTaskList] = useState(initial);
+  const [taskList, setTaskList] = useLocalStorage('tareas', initial);
   const [activeFilter, setActiveFilter] = useState('todas');
-  const [filterBy, setFilterBy] = useState(taskList);
+  const [filterBy, setFilterBy] = useLocalStorage('tareas', taskList);
 
   const removeItem = (id: any) => {
     const newTaskList = taskList.filter(task => task.id !== id);
@@ -60,19 +62,20 @@ export default function Home() {
 
   const showActive = () => {
     setActiveFilter('activas')
-  }
+  };
 
   const showCompleted = () => {
     setActiveFilter('completas')
-  }
+  };
 
   const handleClearComplete = () => {
     const updateListTask = taskList.filter((task: any) => !task.completed)
     setTaskList(updateListTask)
-  }
+  };
 
   useEffect(() => {
     if (activeFilter === 'todas') {
+      window.localStorage.setItem('tareas_de_andres', JSON.stringify(taskList))
       setFilterBy(taskList)
     } else if (activeFilter === 'activas') {
       const activeTask = taskList.filter((task) => task.completed === false)
@@ -81,13 +84,13 @@ export default function Home() {
       const completedTask = taskList.filter((task) => task.completed === true)
       setFilterBy(completedTask)
     }
-  },[activeFilter, taskList])
+  }, [activeFilter, taskList]);
 
   return (
     <main className='h-full w-full flex flex-col bg-gradient-to-r from-neutral-200 via-sky-200 to-blue-200'>
       <Navbar />
-      <div className='flex flex-col justify-start p-4 items-center h-full'>
-        <TodoInput addNewItem={addNewItem}/>
+      <div className='flex flex-col justify-start p-4 items-center h-full min-h-screen'>
+        <TodoInput addNewItem={addNewItem} />
         <TodoList
           taskList={filterBy}
           activeFilter={activeFilter}
