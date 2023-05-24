@@ -9,7 +9,7 @@ import { initial } from './utils/seed';
 export default function Home() {
 
   const [taskList, setTaskList] = useState(initial);
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = useState('todas');
   const [filterBy, setFilterBy] = useState(taskList);
 
   const removeItem = (id: any) => {
@@ -55,15 +55,15 @@ export default function Home() {
   };
 
   const showAll = () => {
-    setActiveFilter('all')
+    setActiveFilter('todas')
   };
 
   const showActive = () => {
-    setActiveFilter('active')
+    setActiveFilter('activas')
   }
 
   const showCompleted = () => {
-    setActiveFilter('completed')
+    setActiveFilter('completas')
   }
 
   const handleClearComplete = () => {
@@ -72,19 +72,19 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (activeFilter === 'all') {
+    if (activeFilter === 'todas') {
       setFilterBy(taskList)
-    } else if (activeFilter === 'active') {
+    } else if (activeFilter === 'activas') {
       const activeTask = taskList.filter((task) => task.completed === false)
       setFilterBy(activeTask)
-    } else if (activeFilter === 'completed') {
+    } else if (activeFilter === 'completas') {
       const completedTask = taskList.filter((task) => task.completed === true)
       setFilterBy(completedTask)
     }
   },[activeFilter, taskList])
 
   return (
-    <main className='h-screen w-full flex flex-col'>
+    <main className='h-full w-full flex flex-col bg-gradient-to-r from-neutral-200 via-sky-200 to-blue-200 overflow-y-hidden'>
       <Navbar />
       <div className='flex flex-col justify-start p-4 items-center h-full'>
         <TodoInput addNewItem={addNewItem}/>

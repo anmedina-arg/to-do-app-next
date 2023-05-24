@@ -16,20 +16,22 @@ export const TodoInput = ({ addNewItem }: any) => {
   };
 
   return (
-    <div className="w-full flex justify-between">
+    <div className="w-full flex justify-between lg:max-w-xl">
       <form onSubmit={handleSubmit} className="flex items-center w-full">
         <input
           type="text"
           placeholder="Agregar una tarea..."
-          className="border-solid border-black border-2 p-4 rounded-md mr-2 mb-2 w-full"
+          //className="border-solid border-black border-2 p-4 rounded-md mr-2 mb-2 w-full"
+          className="w-full text-gray-700 input border-none p-4 rounded-lg bg-gray-200 shadow-md transition duration-300 focus:outline-gray-200 focus:bg-gray-200 focus:shadow-inner"
           onChange={handleChange}
           value={tarea}
         />
-        <button type="submit" >
-          <svg width="50px" height="50px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex items-center justify-center mb-2">
-            <g id="Edit / Add_Plus_Circle">
-              <path id="Vector" d="M8 12H12M12 12H16M12 12V16M12 12V8M12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12C21 16.9706 16.9706 21 12 21Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </g>
+        <button
+          type="submit"
+          className="m-2 h-10 w-10 flex items-center font-medium text-base px-2 py-2 text-white bg-gradient-to-r from-green-600 to-green-400 focus:outline-none hover:shadow-md active:shadow-sm rounded-full">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path fill="none" d="M0 0h24v24H0z"></path>
+            <path fill="currentColor" d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2z"></path>
           </svg>
         </button>
       </form>

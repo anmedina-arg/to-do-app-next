@@ -10,15 +10,18 @@ export const Filter = ({
 }: any) => {
   return (
     <>
+        <ItemsLeft total={total} active={activeFilter} />
       <FilterContainer>
-        <ItemsLeft total={total} />
         <FilterButtonContainer>
-          <FilterButton action={() => showAll()} active={activeFilter} filter='all'/>
-          <FilterButton action={() => showActive()} active={activeFilter} filter='active'/>
-          <FilterButton action={() => showCompleted()} active={activeFilter} filter='completed'/>
+          <FilterButton action={() => showAll()} active={activeFilter} filter='todas'/>
+          <FilterButton action={() => showActive()} active={activeFilter} filter='activas'/>
+          <FilterButton action={() => showCompleted()} active={activeFilter} filter='completas'/>
         </FilterButtonContainer>
-        <button onClick={() => handleClearComplete()}>
-          Clear completed
+        <button
+          onClick={() => handleClearComplete()}
+          className='border-solid border-red-500 px-1 border-2 rounded-full text-sm text-red-500 hover:bg-red-400 hover:text-white'
+        >
+          Borrar terminadas
         </button>
       </FilterContainer>
     </>

@@ -6,7 +6,7 @@ type NavbarProps = {
 
 export const Navbar = () => {
   return (
-    <nav className="justify-center relative top-0 h-20 flex items-center bg-cyan-500">
+    <nav className="justify-center relative top-0 h-20 flex items-center bg-cyan-500 lg:h-14">
       <Logo/>
     </nav>
   );

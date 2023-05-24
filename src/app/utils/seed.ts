@@ -1,32 +1,32 @@
 export const initial = [
     {
       id: 1,
-      name: "pasear al perro",
+      name: "leer: Piense y hagase rico",
       completed: false,
     },
     {
       id: 2,
-      name: "Leer un libro",
+      name: "contratar a Andres Medina",
       completed: false,
     },
     {
       id: 3,
-      name: "Estudiar React",
-      completed: true,
-    },
-    {
-      id: 4,
       name: "ir al super",
       completed: true,
     },
     {
+      id: 4,
+      name: "meditar",
+      completed: true,
+    },
+    {
       id: 5,
-      name: "hacer un asado",
+      name: "comprar regalo a Laura",
       completed: false
     },
     {
       id: 6,
-      name: "festejar el nuevo puesto con un gran asado",
+      name: "preparar cena especial",
       completed: false
     },
   ];
