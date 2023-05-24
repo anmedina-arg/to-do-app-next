@@ -84,7 +84,7 @@ export default function Home() {
   },[activeFilter, taskList])
 
   return (
-    <main className='h-full w-full flex flex-col bg-gradient-to-r from-neutral-200 via-sky-200 to-blue-200 overflow-y-hidden'>
+    <main className='h-full w-full flex flex-col bg-gradient-to-r from-neutral-200 via-sky-200 to-blue-200'>
       <Navbar />
       <div className='flex flex-col justify-start p-4 items-center h-full'>
         <TodoInput addNewItem={addNewItem}/>

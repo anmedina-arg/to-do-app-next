@@ -4,7 +4,7 @@ import { TodoItem } from '../todoItem/todoItem';
 export const TodoList = ({ taskList, removeItem, completeTask, showAll, showActive, showCompleted, handleClearComplete, activeFilter }: any) => {
 
   return (
-    <div className="mt-4 w-full min-h-max rounded flex flex-col overflow-y-hidden lg:max-w-xl">
+    <div className="mt-4 w-full min-h-screen rounded flex flex-col lg:max-w-xl">
       <Filter
         activeFilter={activeFilter}
         total = {taskList.length}
