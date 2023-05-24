@@ -10,9 +10,9 @@ import { TaskProp } from './utils/type';
 
 export default function Home(): JSX.Element {
 
-  const [taskList, setTaskList] = useLocalStorage('tareas', initial);
+  const [taskList, setTaskList] = useState<TaskProp[]>(initial);
   const [activeFilter, setActiveFilter] = useState('todas');
-  const [filterBy, setFilterBy] = useLocalStorage('tareas', taskList);
+  const [filterBy, setFilterBy] = useState<TaskProp[]>(taskList);
 
   const removeItem = (id: any) => {
     const newTaskList = taskList.filter(task => task.id !== id);
