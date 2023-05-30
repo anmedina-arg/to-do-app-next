@@ -16,7 +16,7 @@ const ItemsLeft = ({ total, active }: any) => {
 
 const FilterButtonContainer = ({ children }: any) => {
   return (
-    <div className="">
+    <div className="flex justify-center">
       {children}
     </ div>
   )
@@ -24,7 +24,7 @@ const FilterButtonContainer = ({ children }: any) => {
 
 const FilterButton = ({ action, active, filter }: any) => {
   return (
-    <button onClick={action} className={`text-sm mx-1 border-solid border-gray-400 border-2 rounded-full px-1 hover:bg-gray-300 cursor-pointer` + (active?.toLowerCase().includes(filter.toLowerCase()) ? 'text-blue-500' : 'text-gray-500')}>
+    <button onClick={action} className={`text-sm mx-1 border-solid border-gray-400 border-2 rounded-full px-1 m-1 hover:bg-gray-300 cursor-pointer` + (active?.toLowerCase().includes(filter.toLowerCase()) ? 'text-blue-500' : 'text-gray-500')}>
       {filter}
     </button>
   )

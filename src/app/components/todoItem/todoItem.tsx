@@ -11,7 +11,7 @@ export const TodoItem = ({ id, name, completed, removeItem, completeTask }: any)
 
   return (
     <div className='flex justify-between items-center border-b-2 border-gray-400' key={id}>
-      <div className="flex justify-start">
+      <div className="flex justify-start items-center">
         <input className="m-2 h-5 w-5" type='checkbox' checked={completed} onChange={() => handleComplete(id)} />
         <span className={`my-auto text-base` + (completed ? 'line-through text-gray-500' : '')}>{name}</span>
       </div>
