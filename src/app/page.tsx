@@ -10,7 +10,10 @@ import { TaskProp } from './utils/type';
 
 export default function Home(): JSX.Element {
 
-  const [taskList, setTaskList] = useState<TaskProp[]>(initial);
+  const [taskList, setTaskList] = useState<TaskProp[]>(() => {
+    const taskListLS = window.localStorage.getItem('tareas');
+    return taskListLS ? JSON.parse(taskListLS) : initial
+  });
   const [activeFilter, setActiveFilter] = useState('todas');
   const [filterBy, setFilterBy] = useState<TaskProp[]>(taskList);
 
@@ -75,7 +78,7 @@ export default function Home(): JSX.Element {
 
   useEffect(() => {
     if (activeFilter === 'todas') {
-      window.localStorage.setItem('tareas_de_andres', JSON.stringify(taskList))
+      window.localStorage.setItem('tareas', JSON.stringify(taskList))
       setFilterBy(taskList)
     } else if (activeFilter === 'activas') {
       const activeTask = taskList.filter((task) => task.completed === false)
