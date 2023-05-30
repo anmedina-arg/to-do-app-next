@@ -5,17 +5,17 @@ import { Navbar } from './components/navbar/navbar';
 import { TodoInput } from './components/todoInput/todoInput';
 import { TodoList } from './components/todoList/TodoList';
 import { initial } from './utils/seed';
-import { useLocalStorage } from './utils/useLocalStorage';
 import { TaskProp } from './utils/type';
 
 export default function Home(): JSX.Element {
 
-  const [taskList, setTaskList] = useState<TaskProp[]>(() => {
-    const taskListLS = window.localStorage.getItem('tareas');
-    return taskListLS ? JSON.parse(taskListLS) : initial
-  });
+  const [taskList, setTaskList] = useState<TaskProp[]>([]);
+
   const [activeFilter, setActiveFilter] = useState('todas');
+
   const [filterBy, setFilterBy] = useState<TaskProp[]>(taskList);
+
+
 
   const removeItem = (id: any) => {
     const newTaskList = taskList.filter(task => task.id !== id);
@@ -77,8 +77,20 @@ export default function Home(): JSX.Element {
   };
 
   useEffect(() => {
+    const taskListLS = localStorage.getItem('tareas');
+    if (taskListLS) {
+      setTaskList(JSON.parse(taskListLS));
+    } else {
+      setTaskList(initial);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('tareas', JSON.stringify(taskList))
+  }, [taskList])
+
+  useEffect(() => {
     if (activeFilter === 'todas') {
-      window.localStorage.setItem('tareas', JSON.stringify(taskList))
       setFilterBy(taskList)
     } else if (activeFilter === 'activas') {
       const activeTask = taskList.filter((task) => task.completed === false)
